@@ -6,6 +6,7 @@ on:
  
 jobs:
   receiver:
+    name: Receive
     runs-on: ubuntu-latest
     steps:
       - name: A event received
