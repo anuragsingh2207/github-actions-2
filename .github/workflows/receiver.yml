@@ -16,7 +16,7 @@ on:
     types: [build-dispatch]
 
 env:    
-  environment: ${{ github.event_name == 'build-dispatch' && 'dev' || inputs.environment }}
+  environment: ${{ github.event_name == 'client_payload' && 'dev' || inputs.environment }}
 
 jobs:
   receiver:
@@ -25,6 +25,6 @@ jobs:
     steps:
       - name: Event Received
         run: |
-          echo ${{ github.event.inputs.environment }}
-          echo ${{ github.event.client_payload.env }}
+          echo "Input '${{ github.event.inputs.environment }}'"
+          echo "Payload env '${{ github.event.client_payload.env }}'"
           echo "payload Foo '${{ github.event.client_payload.foo }}'"
