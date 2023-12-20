@@ -2,12 +2,13 @@ name: Receiver
  
 on:
   repository_dispatch:
+    types: [Dispatch and Receive]
  
 jobs:
   receiver:
     name: Receive
     runs-on: ubuntu-latest
     steps:
-      - name: A event received
+      - name: Event Received
         run: |
           echo "payload Foo '${{ github.event.client_payload.foo }}'"
