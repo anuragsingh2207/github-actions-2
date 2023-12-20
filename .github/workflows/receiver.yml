@@ -1,16 +1,27 @@
 name: Receiver
  
 on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Select Environment'  
+        type: choice
+        default: "dev"  
+        required: true
+        options:
+            - "dev"
+            - "uat"
+            - "prd"
   repository_dispatch:
     types: [build-dispatch]
  
 jobs:
   receiver:
     name: Receive
-    if: github.event.build-dispatch.branch == 'develop'
     runs-on: ubuntu-latest
     steps:
       - name: Event Received
         run: |
-          echo ${{ github.ref_name }}
+          echo ${{ github.event.inputs.environment }}
+          echo ${(github.r)
           echo "payload Foo '${{ github.event.client_payload.foo }}'"
