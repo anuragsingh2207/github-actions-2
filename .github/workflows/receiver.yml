@@ -17,7 +17,7 @@ on:
 
 env:    
   environment: ${{ github.event_name == 'build-dispatch' && 'dev' || inputs.environment }}
-  
+
 jobs:
   receiver:
     name: Receive
@@ -26,5 +26,5 @@ jobs:
       - name: Event Received
         run: |
           echo ${{ github.event.inputs.environment }}
-          echo ${(github.r)
+          echo ${{ github.event.client_payload.env }}
           echo "payload Foo '${{ github.event.client_payload.foo }}'"
