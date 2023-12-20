@@ -14,7 +14,10 @@ on:
             - "prd"
   repository_dispatch:
     types: [build-dispatch]
- 
+
+env:    
+  environment: ${{ github.event_name == 'build-dispatch' && 'dev' || inputs.environment }}
+  
 jobs:
   receiver:
     name: Receive
