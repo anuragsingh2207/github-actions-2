@@ -2,7 +2,6 @@ name: Receiver
  
 on:
   repository_dispatch:
-    types: [Receive]
  
 jobs:
   receiver:
