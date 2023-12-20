@@ -7,7 +7,7 @@ on:
 jobs:
   receiver:
     name: Receive
-    if: github.event.client_payload.branch == 'develop'
+    if: github.event.build-dispatch.branch == 'develop'
     runs-on: ubuntu-latest
     steps:
       - name: Event Received
