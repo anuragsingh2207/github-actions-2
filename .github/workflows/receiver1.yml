@@ -6,11 +6,11 @@ on:
 
 jobs:
   receiver1:
-    if: ${{ github.event.client_payload.deploy }} == 'true'
+    if: ${{ github.event.client_payload.deploy == 'true' }} 
     name: Receive1
     runs-on: ubuntu-latest
     steps:
       - name: Event1 Received
         run: |
-          echo "Payload Deploy '${{ github.event.client_payload.deploy }}'"
+          echo "Payload Deploy ${{ github.event.client_payload.deploy }}"
           echo "Payload Foo '${{ github.event.client_payload.foo }}'"
