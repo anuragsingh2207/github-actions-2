@@ -11,7 +11,7 @@ on:
     types: [build-dispatch-1]
 
 env:
-  tag: ${{ github.event_name == 'repository_dispatch' && 'v1.0.1' || inputs.tag }}
+  tag: ${{ github.event_name == 'repository_dispatch' && ${{ github.event.client_payload.tag }} || inputs.tag }}
 
 jobs:
   receiver1:
@@ -21,6 +21,7 @@ jobs:
     steps:
       - name: Event1 Received
         run: |
+          echo "Client Payload for Tag ${{ github.event.client_payload.tag }}"
           echo "Env Var Set by repository_dispatch ${{ env.tag }}"
           echo "Payload Deploy ${{ github.event.client_payload.deploy }}"
           echo "Payload Foo '${{ github.event.client_payload.foo }}'"
