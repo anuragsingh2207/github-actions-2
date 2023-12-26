@@ -11,7 +11,7 @@ on:
     types: [build-dispatch-1]
 
 env:
-  tag: ${{ github.event_name == 'build-dispatch-1' && 'v1.0.1' || inputs.tag }}
+  tag: ${{ if github.event_name == 'build-dispatch-1' }}v1.0.1${{ else }}${{ inputs.tag }}${{ endif }}
 
 jobs:
   receiver1:
