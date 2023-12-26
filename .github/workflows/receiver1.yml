@@ -11,7 +11,7 @@ on:
     types: [build-dispatch-1]
 
 env:
-  tag: ${{ github.event_name == 'repository_dispatch' && '${{ github.event.client_payload.tag }}' || inputs.tag }}
+  tag: ${{ github.event_name == 'repository_dispatch' &&  github.event.client_payload.tag  || inputs.tag }}
 
 jobs:
   receiver1:
