@@ -1,4 +1,4 @@
-name: Re-usable Workflow
+name: Recieve Re-usable Workflow
 on:
   workflow_dispatch:
   
@@ -9,13 +9,13 @@ on:
         type: string
 
 jobs:
-  build4:
+  recieve:
     runs-on: ubuntu-latest
     steps:
 
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Print received commit_id from Workflow 1
+      - name: Print received commit_id from Dispatcher Re-usable Workflow
         run: |
             echo "${{ inputs.commit_id }}"
