@@ -1,13 +1,19 @@
 name: Recieve Re-usable Workflow
 on:
   workflow_dispatch:
+    inputs:
+      commit_id:
+        required: true
+        type: string
   
   workflow_call:
     inputs:
       commit_id:
         required: true
         type: string
-
+env:
+  commit_id: ${{ inputs.commit_id }}
+  
 jobs:
   recieve:
     runs-on: ubuntu-latest
@@ -18,4 +24,4 @@ jobs:
 
       - name: Print received commit_id from Dispatcher Re-usable Workflow
         run: |
-            echo "${{ inputs.commit_id }}"
+            echo "${{ env.commit_id }}"
