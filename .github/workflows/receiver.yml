@@ -1,0 +1,21 @@
+name: Re-usable Workflow
+on:
+  workflow_dispatch:
+  
+  workflow_call:
+    inputs:
+      commit_id:
+        required: true
+        type: string
+
+jobs:
+  build4:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Print received commit_id from Workflow 1
+        run: |
+            echo "${{ inputs.commit_id }}"
