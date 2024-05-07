@@ -1,7 +1,8 @@
-name: Push Event Workflow
+name: Mixed Workflow
 on:
   push:
     branches: [main, develop]
+  
   workflow_dispatch:
     inputs:
       message:
