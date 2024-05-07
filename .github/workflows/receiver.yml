@@ -1,30 +1,27 @@
-name: Receiver
- 
+name: Recieve Re-usable Workflow
 on:
   workflow_dispatch:
     inputs:
-      environment:
-        description: 'Select Environment'  
-        type: choice
-        default: "dev"  
+      commit_id:
         required: true
-        options:
-            - "dev"
-            - "uat"
-            - "prd"
-  repository_dispatch:
-    types: [build-dispatch]
-
-env:    
-  environment: ${{ github.event_name == 'build-dispatch' && 'dev' || inputs.environment }}
+        type: string
+  
+  workflow_call:
+    inputs:
+      commit_id:
+        required: true
+        type: string
+env:
+  commit_id: ${{ inputs.commit_id }}
   
 jobs:
-  receiver:
-    name: Receive
+  recieve:
     runs-on: ubuntu-latest
     steps:
-      - name: Event Received
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Print received commit_id from Dispatcher Re-usable Workflow
         run: |
-          echo ${{ github.event.inputs.environment }}
-          echo ${(github.r)
-          echo "payload Foo '${{ github.event.client_payload.foo }}'"
+            echo "${{ env.commit_id }}"

@@ -1,7 +1,14 @@
-name: Push Event Workflow
+name: Mixed Workflow
 on:
   push:
     branches: [main, develop]
+  
+  workflow_dispatch:
+    inputs:
+      message:
+        description: 'Enter message'  
+        default: 'hello'   
+        required: true
 
 jobs:
   build:
@@ -14,3 +21,8 @@ jobs:
       - name: Print Message
         run: |
           echo "Hello World from scheduled GitHub Actions" 
+
+      - name: Print Input Message
+        run: |
+          echo "Input: ${{ inputs.message }}" 
+          

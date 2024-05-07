@@ -1,0 +1,15 @@
+name: Receiver 2
+ 
+on:
+  repository_dispatch:
+    types: [build-dispatch-2]
+
+jobs:
+  receiver2: 
+    name: Receive2
+    if: ${{ github.event.client_payload.deploy }} == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Event Received
+        run: |
+          echo "Payload Foo '${{ github.event.client_payload.foo }}'"
