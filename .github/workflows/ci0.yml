@@ -9,6 +9,7 @@ on:
         description: 'Enter message'  
         default: 'hello'   
         required: true
+        
 
 jobs:
   build:
